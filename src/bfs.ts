@@ -1,8 +1,12 @@
-import { State } from './state';
+export interface State<T> {
+  check: () => boolean;
+  next: () => State<T>[];
+  readonly value: T;
+}
 
-type BfsResult<T> = State<T> | undefined;
+export type BfsResult<T> = State<T> | undefined;
 
-function bfs<T>(state: State<T>): BfsResult<T> {
+export function bfs<T>(state: State<T>): BfsResult<T> {
   const queue: State<T>[] = [];
   const set: Set<T> = new Set();
 
@@ -37,5 +41,3 @@ function pushAndShift<T>(
 
   return queue.shift();
 }
-
-export { bfs }

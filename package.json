@@ -1,5 +1,5 @@
 {
-  "name": "escape-block-node",
+  "name": "bfs-node",
   "version": "1.0.0",
   "description": "",
   "type": "module",
@@ -10,7 +10,7 @@
     "lint": "eslint . --ext .ts",
     "test": "jest"
   },
-  "author": "",
+  "author": "Iurii Kyrylenko",
   "license": "ISC",
   "dependencies": {},
   "devDependencies": {

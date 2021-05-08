@@ -1,5 +1,5 @@
-## OMDB client
+## Breath First Search (BFS): Node.js Implementation
 
-Data source: [omdb-postgresql](https://github.com/iurii-kyrylenko/omdb-postgresql)
+See also [Haskel implementation](https://github.com/iurii-kyrylenko/escape-block-rest/blob/master/src/Bfs.hs)
 
 Node.js 14

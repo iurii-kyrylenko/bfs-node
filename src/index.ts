@@ -1,10 +1,12 @@
-import { State, bfs } from './bfs.js';
+import { State, bfs } from './bfs-01.js';
 
-class MockState implements State<number> {
-  protected _value: number;
+class MockState implements State {
+  private _value: number;
+  private _hash: string;
 
   constructor(value: number) {
-    this._value = value
+    this._value = value;
+    this._hash = value.toString();
   }
 
   check(): boolean {
@@ -19,12 +21,15 @@ class MockState implements State<number> {
     ]
   }
 
+  get hash(): string {
+    return this._hash
+  }
+
   get value(): number {
     return this._value;
   }
 }
 
 const state = new MockState(0);
-
 const res = bfs(state);
-console.log(res?.value);
+console.log(res);

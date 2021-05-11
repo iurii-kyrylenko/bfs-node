@@ -10,4 +10,10 @@ const res = bfs<number>({
   check: state => state === 42
 });
 
-console.log(res);
+if (!res) {
+  console.log('Not found');
+}
+else {
+  console.log('length:', res.length - 1);
+  console.log('path:', ...res);
+}

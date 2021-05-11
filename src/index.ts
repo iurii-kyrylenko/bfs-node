@@ -1,19 +1,13 @@
-import { bfs } from './bfs.js';
+import { bfs, path } from './bfs.js';
 
 const res = bfs<number>({
   start: 0,
   adj: state => ([
-    (state + 1) % 100,
-    (state + 2) % 100,
-    (state + 3) % 100,
+    (state + 1) % 10**5,
+    (state + 2) % 10**5,
+    (state + 3) % 10**5,
   ]),
-  check: state => state === 42
+  check: state => state === 10**5 - 1
 });
 
-if (!res) {
-  console.log('Not found');
-}
-else {
-  console.log('length:', res.length - 1);
-  console.log('path:', ...res);
-}
+console.log(JSON.stringify(path(res)));

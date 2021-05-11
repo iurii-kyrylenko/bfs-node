@@ -1,6 +1,6 @@
-import { bfs, path } from './bfs';
+import { bfs } from './bfs-03';
 
-describe("BFS: primitive state", () => {
+describe.skip("BFS-03: primitive state", () => {
   it("should find a target", () => {
     const res = bfs<number>({
       start: 0,
@@ -12,7 +12,7 @@ describe("BFS: primitive state", () => {
       check: state => state === 42
     });
 
-    expect(path(res)).toStrictEqual([0,3,6,9,12,15,18,21,24,27,30,33,36,39,42]);
+    expect(res).toStrictEqual([0,3,6,9,12,15,18,21,24,27,30,33,36,39,42]);
   });
 
   it("should not find a target", () => {
@@ -26,11 +26,11 @@ describe("BFS: primitive state", () => {
       check: state => state === 42
     });
 
-    expect(path(res)).toEqual([]);
+    expect(res).toBeUndefined();
   });
 });
 
-describe("BFS: complex state", () => {
+describe.skip("BFS-03: complex state", () => {
   it("should find a target #1", () => {
     const res = bfs<number[]>({
       start: [1],
@@ -41,7 +41,7 @@ describe("BFS: complex state", () => {
       check: state => state[0] === 16
     });
 
-    expect(path(res)).toStrictEqual([[1],[4],[16]]);
+    expect(res).toStrictEqual([[1],[4],[16]]);
   });
 
   it("should find a target #2", () => {
@@ -54,6 +54,6 @@ describe("BFS: complex state", () => {
       check: state => state[0] === 32
     });
 
-    expect(path(res)).toStrictEqual([[1],[2],[8],[32]]);
+    expect(res).toStrictEqual([[1],[2],[8],[32]]);
   });
 });

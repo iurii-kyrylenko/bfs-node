@@ -1,6 +1,6 @@
 import { bfs } from './bfs-02';
 
-describe.skip("BFS", () => {
+describe.skip("BFS-02", () => {
   it("should find a target", () => {
     const res = bfs<number>({
       start: 0,

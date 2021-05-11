@@ -5,12 +5,16 @@ interface BfsParams<T> {
   hash?: (state: T) => string;
 }
 
+type BfsResult<T> = T[] | undefined
+
 interface Node<T> {
   state: T;
-  parent?: Node<T>;
+  track: T[]
 }
 
-type BfsResult<T> = Node<T> | undefined
+function agg<T>(node: Node<T>): T[] {
+  return [...node.track, node.state]
+}
 
 export function bfs<T> (params: BfsParams<T>): BfsResult<T> {
   const {
@@ -24,12 +28,13 @@ export function bfs<T> (params: BfsParams<T>): BfsResult<T> {
   const queue: Node<T>[] = [];
 
   let node: Node<T> = {
-    state: start
+    state: start,
+    track: []
   }
 
   for(;;) {
     if (check(node.state)) {
-      return node;
+      return agg(node);
     }
 
     const states = adj(node.state);
@@ -37,7 +42,7 @@ export function bfs<T> (params: BfsParams<T>): BfsResult<T> {
     states
       .filter(s => !set.has(hash(s)))
       .forEach(s => {
-        queue.push({ state: s, parent: node });
+        queue.push({ state: s, track: agg(node) });
         set.add(hash(s))
       });
 
@@ -49,22 +54,4 @@ export function bfs<T> (params: BfsParams<T>): BfsResult<T> {
 
     node = next;
   }
-}
-
-export function path<T>(searchResult: BfsResult<T>): T[] {
-  const res: T[] = [];
-
-  if (!searchResult) {
-    return res;
-  }
-
-  let node = searchResult;
-
-  for (; node.parent; node = node.parent) {
-    res.unshift(node.state);
-  }
-
-  res.unshift(node.state)
-
-  return res;
 }
